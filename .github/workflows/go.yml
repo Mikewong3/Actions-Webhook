@@ -9,14 +9,13 @@ name: Build Go App
 env:
   DIRECTORY: test
 
-defaults:
-  run:
-    working-directory: ${{ env.DIRECTORY }}
+
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+    env:
+      directory: ${{ env.DIRECTORY }}
     steps:
     - uses: actions/checkout@v3
 
