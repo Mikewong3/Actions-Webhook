@@ -1,2 +1,15 @@
-event,repository_name,send_name,send_pic
-push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4
+event,repository_name,send_name,send_pic,workflow_conclusion
+push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4,
+push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4,
+push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4,
+push,Actions-Webhook,Mikewong3,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,
+workflow_job,Actions-Webhook,,https://avatars.githubusercontent.com/u/25376171?v=4,success

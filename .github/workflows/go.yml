@@ -1,7 +1,17 @@
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 name: Build Go App
+
+env:
+  DIRECTORY: test
+
+defaults:
+  run:
+    working-directory: ${{ env.DIRECTORY }}
 
 jobs:
 
