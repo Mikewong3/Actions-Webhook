@@ -2,36 +2,64 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"os"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/gin-gonic/gin"
 )
 
+var Router *gin.Engine
+
+type GithubRepository struct {
+	Name string `json:"name"`
+}
+
+type GithubSender struct {
+	AvatarUrl string `json:"avatar_url"`
+}
+
+type GithubPusher struct {
+	Name string `json:"name"`
+}
+
+type GithubEvent struct {
+	Repository GithubRepository `json:"repository"`
+	Sender     GithubSender     `json:"sender"`
+	Pusher     GithubPusher     `json:"pusher"`
+}
+
 func main() {
-	// Echo instance
-	e := echo.New()
-
-	// Middleware
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-
-	// Routes
-	e.GET("/", hello)
-
-	e.POST("/events", events)
-
-	// Start server
-	e.Logger.Fatal(e.Start(":8080"))
+	Router = gin.Default()
+	api := Router.Group("/data")
+	{
+		api.POST("/events", persistEvents)
+	}
+	Router.Run(":8080")
 }
 
-func events(c echo.Context) error {
-	fmt.Println("Post event")
+func persistEvents(ctx *gin.Context) {
+	var event GithubEvent
 
-	return nil
-}
+	if err := ctx.BindJSON(&event); err != nil {
+		return
+	}
 
-// Handler
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+	fmt.Printf("ctx.GetHeader(\"X-GitHub-Event\"): %v\n", ctx.GetHeader("X-GitHub-Event"))
+
+	fmt.Printf("event: %+v\n", event)
+
+	f, err := os.OpenFile("data.csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+
+	if err != nil {
+		return
+	}
+
+	var entry string
+	entry += ctx.GetHeader("X-GitHub-Event") + ","
+	entry += event.Repository.Name + ","
+	entry += event.Pusher.Name + ","
+	entry += event.Sender.AvatarUrl
+
+	f.WriteString(entry + "\n")
+
+	ctx.JSON(200, event)
 }
