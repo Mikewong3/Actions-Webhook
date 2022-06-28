@@ -1,4 +1,7 @@
-name: Go
+on:
+  workflow_dispatch:
+
+name: Build Go App
 
 jobs:
 
