@@ -1,13 +1,29 @@
-name: Go
-
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      service-name:
+        type: choice
+        description: Which dev to push to
+        required: true
+        default: 'neonmoose'
+        options:
+        - neonmoose
+        - neonmoose-mike
+        - neonmoose-jahan
+        - neonmoose-armin
+        - neonmoose-harrison
+        - neonmoose-tyler
+        - neonmoose-ken
+        - neonmoose-james
+        - neonmoose-tariq
+        - neonmoose-dane
+      
+name: Build Go App
+
+env:
+  DIRECTORY: "test-directory"
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +33,8 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
+    
+    - name: Check config
+      run: "echo ${{env.DIRECTORY}}"
 
-    - name: Build
-      run: go build -v ./main.go
+
