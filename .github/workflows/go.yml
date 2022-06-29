@@ -17,6 +17,7 @@ on:
         - neonmoose-james
         - neonmoose-tariq
         - neonmoose-dane
+        - test
       
 name: Build Go App
 
