@@ -2,24 +2,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      service-name:
-        type: choice
-        description: Which dev to push to
-        required: true
-        default: 'neonmoose'
-        options:
-        - neonmoose
-        - neonmoose-mike
-        - neonmoose-jahan
-        - neonmoose-armin
-        - neonmoose-harrison
-        - neonmoose-tyler
-        - neonmoose-ken
-        - neonmoose-james
-        - neonmoose-tariq
-        - neonmoose-dane
       
 name: Build Go App
 
