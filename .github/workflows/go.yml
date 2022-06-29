@@ -20,21 +20,17 @@ on:
       
 name: Build Go App
 
-env:
-  DIRECTORY: "test-directory"
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
-    
+    - name: Set Directory
+      run: | 
+        echo "DIRECTORY=${{github.event.inputs.service-name}}" >> $GITHUB_ENV
+
     - name: Check config
-      run: "echo ${{env.DIRECTORY}}"
+      run: "echo ${{ env.DIRECTORY }}"
 
 
