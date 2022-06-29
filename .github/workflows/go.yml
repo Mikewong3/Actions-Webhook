@@ -23,6 +23,9 @@ name: Build Go App
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.service-name}}
     steps:
     - uses: actions/checkout@v3
 
