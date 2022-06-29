@@ -13,6 +13,7 @@ var Router *gin.Engine
 
 type GithubRepository struct {
 	Name string `json:"name"`
+	blah string `json:"blah"`
 }
 
 type GithubSender struct {
